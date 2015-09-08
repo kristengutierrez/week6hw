@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../Core Data Hotel/Room.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Core Data Hotel/Room.m">
+   </FileRef>
+   <FileRef
+      location = "group:../Core Data Hotel/Hotel.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Core Data Hotel/Hotel.m">
+   </FileRef>
+   <FileRef
+      location = "self:Core Data Hotel.xcodeproj">
+   </FileRef>
+</Workspace>
