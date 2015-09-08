@@ -26,15 +26,26 @@
   ViewController *rootVC = [[ViewController alloc] init];
   
   self.window.rootViewController = rootVC;
+  Hotel *grandWailea = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
+  grandWailea.name = @"Grand Wailea";
+  grandWailea.stars = @5;
+  Room *room404 = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
+  room404.number = @404;
+  room404.hotel = grandWailea;
   
-  Hotel *hotel = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
-  hotel.name = @"Four Seasons";
-  hotel.stars = @5;
+  Hotel *fourSeasons = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
+  fourSeasons.name = @"Four Seasons";
+  fourSeasons.stars = @5;
   
   
   Room *room1 = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
   room1.number = @1;
-  room1.hotel = hotel;
+  room1.hotel = fourSeasons;
+  
+  
+  Room *room2 = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
+  room2.number = @2;
+  room2.hotel = fourSeasons;
 //  hotel.managedObjectContext
   NSError *saveError;
   

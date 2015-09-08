@@ -17,6 +17,8 @@
 		171D61861B9E47A9000E3CD8 /* HotelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171D61851B9E47A9000E3CD8 /* HotelListViewController.m */; };
 		171D61911B9E48EF000E3CD8 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 171D618E1B9E48EF000E3CD8 /* Room.m */; };
 		171D61921B9E48EF000E3CD8 /* Hotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 171D61901B9E48EF000E3CD8 /* Hotel.m */; };
+		171D61971B9F5429000E3CD8 /* Guest.m in Sources */ = {isa = PBXBuildFile; fileRef = 171D61941B9F5429000E3CD8 /* Guest.m */; };
+		171D61981B9F5429000E3CD8 /* Reservations.m in Sources */ = {isa = PBXBuildFile; fileRef = 171D61961B9F5429000E3CD8 /* Reservations.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,10 @@
 		171D618E1B9E48EF000E3CD8 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Room.m; path = "Core Data Hotel/Room.m"; sourceTree = "<group>"; };
 		171D618F1B9E48EF000E3CD8 /* Hotel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hotel.h; path = "Core Data Hotel/Hotel.h"; sourceTree = "<group>"; };
 		171D61901B9E48EF000E3CD8 /* Hotel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hotel.m; path = "Core Data Hotel/Hotel.m"; sourceTree = "<group>"; };
+		171D61931B9F5429000E3CD8 /* Guest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Guest.h; path = "Core Data Hotel/Guest.h"; sourceTree = "<group>"; };
+		171D61941B9F5429000E3CD8 /* Guest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Guest.m; path = "Core Data Hotel/Guest.m"; sourceTree = "<group>"; };
+		171D61951B9F5429000E3CD8 /* Reservations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reservations.h; path = "Core Data Hotel/Reservations.h"; sourceTree = "<group>"; };
+		171D61961B9F5429000E3CD8 /* Reservations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reservations.m; path = "Core Data Hotel/Reservations.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,10 @@
 		171D614F1B9E28E2000E3CD8 = {
 			isa = PBXGroup;
 			children = (
+				171D61931B9F5429000E3CD8 /* Guest.h */,
+				171D61941B9F5429000E3CD8 /* Guest.m */,
+				171D61951B9F5429000E3CD8 /* Reservations.h */,
+				171D61961B9F5429000E3CD8 /* Reservations.m */,
 				171D618D1B9E48EF000E3CD8 /* Room.h */,
 				171D618E1B9E48EF000E3CD8 /* Room.m */,
 				171D618F1B9E48EF000E3CD8 /* Hotel.h */,
@@ -234,7 +244,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				171D61911B9E48EF000E3CD8 /* Room.m in Sources */,
+				171D61981B9F5429000E3CD8 /* Reservations.m in Sources */,
 				171D61921B9E48EF000E3CD8 /* Hotel.m in Sources */,
+				171D61971B9F5429000E3CD8 /* Guest.m in Sources */,
 				171D61861B9E47A9000E3CD8 /* HotelListViewController.m in Sources */,
 				171D61611B9E28E2000E3CD8 /* AppDelegate.m in Sources */,
 				171D615E1B9E28E2000E3CD8 /* main.m in Sources */,

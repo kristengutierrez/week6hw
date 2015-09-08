@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../Core Data Hotel/Guest.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Core Data Hotel/Guest.m">
+   </FileRef>
+   <FileRef
+      location = "group:../Core Data Hotel/Reservations.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Core Data Hotel/Reservations.m">
+   </FileRef>
+   <FileRef
       location = "group:../Core Data Hotel/Room.h">
    </FileRef>
    <FileRef
