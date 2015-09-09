@@ -16,12 +16,9 @@
 NSArray *tableData;
 - (void)loadView {
   UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
-//  tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
   tableView.backgroundColor = [UIColor colorWithRed:122.0/255.0 green:97.0/255.0 blue:149.0/255.0 alpha:1];
   tableView.delegate = self;
   tableView.dataSource = self;
-//  CGRect frame = tableView.frame;
-//  frame.size.height = 300;
   
 //  [tableView reloadData];
   self.view = tableView;
@@ -60,7 +57,8 @@ tableData = [NSArray arrayWithObjects: @"Browse Hotels", @"Book a Room", @"Look 
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
   }
   cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
-  cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:22.0];
+  cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:50.0];
+  cell.textLabel.numberOfLines = 0;
   cell.textLabel.textColor = [UIColor whiteColor];
   cell.backgroundColor = [UIColor colorWithRed:122.0/255.0 green:97.0/255.0 blue:149.0/255.0 alpha:1];
   return cell;

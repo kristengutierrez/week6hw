@@ -7,23 +7,43 @@
 //
 
 #import "HotelListViewController.h"
-
+#import "AppDelegate.h"
+#import "Hotel.h"
 @interface HotelListViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSArray *hotels;
 @end
 
 @implementation HotelListViewController
 - (void)loadView {
-  UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
-  //  tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+  UIView *rootView = [[UIView alloc] init];
+  rootView.backgroundColor = [UIColor whiteColor];
+  UITableView *tableView = [[UITableView alloc] initWithFrame:rootView.frame style:UITableViewStylePlain];
   tableView.backgroundColor = [UIColor colorWithRed:122.0/255.0 green:97.0/255.0 blue:149.0/255.0 alpha:1];
   tableView.delegate = self;
   tableView.dataSource = self;
-  self.view = tableView;
+  self.tableView = tableView;
+  [rootView addSubview:tableView];
+  
+  NSDictionary *views = @{@"tableView" : tableView};
+  NSArray *tableViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|" options:0 metrics:nil views:views];
+  [rootView addConstraints:tableViewVerticalConstraints];
+  NSArray *tableViewHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|"options:0 metrics:nil views:views];
+  [rootView addConstraints:tableViewHorizontalConstraints];
+  self.view = rootView;
   
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
+  [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"HotelCell"];
+  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+
+  NSError *fetchError;
+  NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
+  fetchRequest.predicate = [NSPredicate predicateWithFormat:@"stars > 3"];
+  self.hotels = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+  [self.tableView reloadData];
     // Do any additional setup after loading the view.
 }
 
@@ -43,18 +63,20 @@
 */
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 2;
+  return self.hotels.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HotelCell"];
+  Hotel *hotel = self.hotels[indexPath.row];
+  cell.textLabel.text = hotel.name;
   if (cell == nil) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HotelCell"];
   }
   return cell;
 }
 
 #pragma mark - UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return 200;
 }
 @end

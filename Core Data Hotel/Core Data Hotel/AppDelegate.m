@@ -10,59 +10,79 @@
 #import "ViewController.h"
 #import "Hotel.h"
 #import "Room.h"
-
+#import "HotelListViewController.h"
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  [self.window makeKeyAndVisible];
-  
-  ViewController *rootVC = [[ViewController alloc] init];
-  
-  self.window.rootViewController = rootVC;
-  Hotel *grandWailea = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
-  grandWailea.name = @"Grand Wailea";
-  grandWailea.stars = @5;
-  Room *room404 = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
-  room404.number = @404;
-  room404.hotel = grandWailea;
-  
-  Hotel *fourSeasons = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
-  fourSeasons.name = @"Four Seasons";
-  fourSeasons.stars = @5;
-  
-  
-  Room *room1 = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
-  room1.number = @1;
-  room1.hotel = fourSeasons;
-  
-  
-  Room *room2 = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
-  room2.number = @2;
-  room2.hotel = fourSeasons;
-//  hotel.managedObjectContext
+  NSDate *now = [NSDate date];
+//  NSLog(@"%@",now);
+//  NSDate *later = [NSDate dateWithTimeIntervalSinceNow:10];
+//  NSLog(@"later time:%@", later);
+  NSCalendar *calendar = [NSCalendar currentCalendar];
+  NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:now];
+  NSLog(@"year is: %ld", (long)components.year);
+//  components.year = 2016;
+  NSDateComponents *newComponents = [[NSDateComponents alloc] init];
+  newComponents.year = 1990;
+  newComponents.day = 25;
+  newComponents.month = 12;
+  NSDate *christmas1990 = [calendar dateFromComponents:newComponents];
+  NSLog(@"%@", christmas1990);
   NSError *saveError;
-  
   BOOL result = [self.managedObjectContext save:&saveError];
   if (!result) {
     NSLog(@"%@", saveError.localizedDescription);
   }
-  
   NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
   NSError *fetchError;
   NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
   NSLog(@"%lu",(unsigned long)results.count);
+
+  [self seedCoreDataIfNeeded];
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  [self.window makeKeyAndVisible];
+  HotelListViewController *hotelListViewController = [[HotelListViewController alloc] init];
+  ViewController *rootVC = [[ViewController alloc] init];
   
+  self.window.rootViewController = hotelListViewController;
   // Override point for customization after application launch.
   return YES;
 }
-
+- (void) seedCoreDataIfNeeded {
+  NSError *fetchError;
+  NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
+  NSInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&fetchError];
+  if (count == 0) {
+    //we need to seed our database
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"hotels" ofType:@"json"];
+    NSData *jsonData = [NSData dataWithContentsOfFile:jsonPath];
+    NSError *jsonError;
+    NSDictionary *rootObject = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&jsonError];
+    if (jsonError) {
+      return;
+    }
+      NSArray *hotels = [rootObject objectForKey:@"Hotels"];
+    NSLog(@"%lu", (unsigned long)hotels.count);
+    for (int i = 0; i<hotels.count; i++) {
+      NSDictionary *currentHotel = hotels[i];
+      Hotel *hotel = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
+      hotel.location = [currentHotel objectForKey:@"location"];
+      hotel.stars = [currentHotel objectForKey:@"stars"];
+      Room *rooms = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
+      NSArray *roomInfo = [currentHotel objectForKey:@"rooms"];
+      NSDictionary *roomStuff = [[NSDictionary alloc] init];
+      for (roomStuff in roomInfo) {
+        rooms.number = [roomStuff objectForKey:@"number"];
+        rooms.beds = [roomStuff objectForKey:@"beds"];
+        rooms.rate = [roomStuff objectForKey:@"rate"];
+      }
+    }
+  }
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
   // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
   // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
