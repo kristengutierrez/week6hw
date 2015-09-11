@@ -8,6 +8,6 @@
 
 #import "ViewController.h"
 
-@interface HotelListViewController : ViewController
+@interface HotelListViewController : UIViewController
 
 @end
