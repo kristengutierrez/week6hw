@@ -14,13 +14,16 @@
 @end
 
 @implementation DatePickerViewController
+
 - (void)loadView {
   UIView *rootView = [[UIView alloc] init];
   rootView.backgroundColor = [UIColor whiteColor];
+  
   UIDatePicker *datePicker = [[UIDatePicker alloc] init];
   self.datePicker = datePicker;
   [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
   [rootView addSubview:datePicker];
+  
   UIButton *nextButton = [[UIButton alloc] init];
 //  nextButton.backgroundColor = [UIColor blueColor];
   [nextButton addTarget:self action:@selector(nextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -28,6 +31,7 @@
   [nextButton setTitle:@"Next" forState:UIControlStateNormal];
   [nextButton setTranslatesAutoresizingMaskIntoConstraints:false];
   [rootView addSubview:nextButton];
+  
   NSLayoutConstraint *nextButtonCenterX = [NSLayoutConstraint constraintWithItem:nextButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:rootView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
   NSLayoutConstraint *nextButtonBottomConstraint = [NSLayoutConstraint constraintWithItem:nextButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:rootView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:8.0];
   nextButtonCenterX.active = true;

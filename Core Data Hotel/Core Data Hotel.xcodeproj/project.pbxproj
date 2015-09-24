@@ -32,6 +32,9 @@
 		171D61C91BA34AB6000E3CD8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 171D61C81BA34AB6000E3CD8 /* CoreData.framework */; };
 		171D61CB1BA34AD3000E3CD8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 171D61CA1BA34AD3000E3CD8 /* libz.dylib */; };
 		171D61CD1BA34AE1000E3CD8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 171D61CC1BA34AE1000E3CD8 /* libsqlite3.dylib */; };
+		171D61D31BA699B7000E3CD8 /* ArrivalAndDepartureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171D61D21BA699B7000E3CD8 /* ArrivalAndDepartureViewController.m */; };
+		171D61D61BA72CDF000E3CD8 /* ConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171D61D51BA72CDF000E3CD8 /* ConfirmationViewController.m */; };
+		171D61D81BA734FD000E3CD8 /* ReservationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 171D61D71BA734FD000E3CD8 /* ReservationServiceTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +93,11 @@
 		171D61C81BA34AB6000E3CD8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		171D61CA1BA34AD3000E3CD8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		171D61CC1BA34AE1000E3CD8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		171D61D11BA699B7000E3CD8 /* ArrivalAndDepartureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrivalAndDepartureViewController.h; sourceTree = "<group>"; };
+		171D61D21BA699B7000E3CD8 /* ArrivalAndDepartureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrivalAndDepartureViewController.m; sourceTree = "<group>"; };
+		171D61D41BA72CDF000E3CD8 /* ConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmationViewController.h; sourceTree = "<group>"; };
+		171D61D51BA72CDF000E3CD8 /* ConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmationViewController.m; sourceTree = "<group>"; };
+		171D61D71BA734FD000E3CD8 /* ReservationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationServiceTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,9 +124,7 @@
 		171D614F1B9E28E2000E3CD8 = {
 			isa = PBXGroup;
 			children = (
-				171D61CC1BA34AE1000E3CD8 /* libsqlite3.dylib */,
-				171D61CA1BA34AD3000E3CD8 /* libz.dylib */,
-				171D61C81BA34AB6000E3CD8 /* CoreData.framework */,
+				171D61D01BA34D19000E3CD8 /* Frameworks */,
 				171D61C41BA227AB000E3CD8 /* Localizable.strings */,
 				171D61A51BA08EFE000E3CD8 /* hotels.json */,
 				171D615A1B9E28E2000E3CD8 /* Core Data Hotel */,
@@ -141,6 +147,7 @@
 			children = (
 				171D615F1B9E28E2000E3CD8 /* AppDelegate.h */,
 				171D61601B9E28E2000E3CD8 /* AppDelegate.m */,
+				171D61CF1BA34CE2000E3CD8 /* Hash Table */,
 				171D61AC1BA0B020000E3CD8 /* Model */,
 				171D61AA1BA0B00F000E3CD8 /* Controller */,
 				171D616B1B9E28E2000E3CD8 /* Images.xcassets */,
@@ -164,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				171D617A1B9E28E2000E3CD8 /* Core_Data_HotelTests.m */,
+				171D61D71BA734FD000E3CD8 /* ReservationServiceTests.m */,
 				171D61781B9E28E2000E3CD8 /* Supporting Files */,
 			);
 			path = "Core Data HotelTests";
@@ -190,6 +198,10 @@
 				171D61BD1BA2023B000E3CD8 /* RoomsViewController.m */,
 				171D61A21B9F9C0D000E3CD8 /* BookReservationViewController.h */,
 				171D61A31B9F9C0D000E3CD8 /* BookReservationViewController.m */,
+				171D61D11BA699B7000E3CD8 /* ArrivalAndDepartureViewController.h */,
+				171D61D21BA699B7000E3CD8 /* ArrivalAndDepartureViewController.m */,
+				171D61D41BA72CDF000E3CD8 /* ConfirmationViewController.h */,
+				171D61D51BA72CDF000E3CD8 /* ConfirmationViewController.m */,
 				171D61991B9F8220000E3CD8 /* DatePickerViewController.h */,
 				171D619A1B9F8220000E3CD8 /* DatePickerViewController.m */,
 			);
@@ -197,6 +209,18 @@
 			sourceTree = "<group>";
 		};
 		171D61AC1BA0B020000E3CD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				171D61CE1BA34CCD000E3CD8 /* Entities */,
+				171D61B01BA0D46F000E3CD8 /* ReservationService.h */,
+				171D61B11BA0D46F000E3CD8 /* ReservationService.m */,
+				171D61AD1BA0D147000E3CD8 /* CoreDataStack.h */,
+				171D61AE1BA0D147000E3CD8 /* CoreDataStack.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		171D61CE1BA34CCD000E3CD8 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
 				171D61931B9F5429000E3CD8 /* Guest.h */,
@@ -207,16 +231,29 @@
 				171D61C61BA2A3F1000E3CD8 /* Hotel.m */,
 				171D619F1B9F9239000E3CD8 /* Room.h */,
 				171D61A01B9F9239000E3CD8 /* Room.m */,
-				171D61B01BA0D46F000E3CD8 /* ReservationService.h */,
-				171D61B11BA0D46F000E3CD8 /* ReservationService.m */,
-				171D61AD1BA0D147000E3CD8 /* CoreDataStack.h */,
-				171D61AE1BA0D147000E3CD8 /* CoreDataStack.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		171D61CF1BA34CE2000E3CD8 /* Hash Table */ = {
+			isa = PBXGroup;
+			children = (
 				171D61B31BA0EA54000E3CD8 /* HashTable.h */,
 				171D61B41BA0EA54000E3CD8 /* HashTable.m */,
 				171D61B61BA0EB4D000E3CD8 /* Bucket.h */,
 				171D61B71BA0EB4D000E3CD8 /* Bucket.m */,
 			);
-			name = Model;
+			name = "Hash Table";
+			sourceTree = "<group>";
+		};
+		171D61D01BA34D19000E3CD8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				171D61CA1BA34AD3000E3CD8 /* libz.dylib */,
+				171D61CC1BA34AE1000E3CD8 /* libsqlite3.dylib */,
+				171D61C81BA34AB6000E3CD8 /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				171D61A11B9F9239000E3CD8 /* Room.m in Sources */,
+				171D61D31BA699B7000E3CD8 /* ArrivalAndDepartureViewController.m in Sources */,
 				171D61981B9F5429000E3CD8 /* Reservations.m in Sources */,
 				171D61A41B9F9C0D000E3CD8 /* BookReservationViewController.m in Sources */,
 				171D61971B9F5429000E3CD8 /* Guest.m in Sources */,
@@ -332,6 +370,7 @@
 				171D61C71BA2A3F1000E3CD8 /* Hotel.m in Sources */,
 				171D61B21BA0D46F000E3CD8 /* ReservationService.m in Sources */,
 				171D61671B9E28E2000E3CD8 /* ViewController.m in Sources */,
+				171D61D61BA72CDF000E3CD8 /* ConfirmationViewController.m in Sources */,
 				171D61B51BA0EA54000E3CD8 /* HashTable.m in Sources */,
 				171D619B1B9F8220000E3CD8 /* DatePickerViewController.m in Sources */,
 				171D61641B9E28E2000E3CD8 /* Core_Data_Hotel.xcdatamodeld in Sources */,
@@ -344,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				171D61D81BA734FD000E3CD8 /* ReservationServiceTests.m in Sources */,
 				171D617B1B9E28E2000E3CD8 /* Core_Data_HotelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

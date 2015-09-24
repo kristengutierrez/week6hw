@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "BookReservationViewController.h"
 #import "LookUpReservationsViewController.h"
+#import "ArrivalAndDepartureViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @end
@@ -86,12 +87,13 @@ tableData = [NSArray arrayWithObjects:NSLocalizedString (@"Browse Hotels", nil),
   return 200;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
   if (indexPath.row == 0) {
     HotelListViewController *hotelVC = [[HotelListViewController alloc] init];
     [self.navigationController pushViewController:hotelVC animated:YES];
   } else if (indexPath.row == 1){
-    BookReservationViewController *bookReservationVC = [[BookReservationViewController alloc] init];
-    [self.navigationController pushViewController:bookReservationVC animated:YES];
+    ArrivalAndDepartureViewController *arrivalVC = [[ArrivalAndDepartureViewController alloc] init];
+    [self.navigationController pushViewController:arrivalVC animated:YES];
   } else if (indexPath.row == 2) {
     LookUpReservationsViewController *lookVC = [[LookUpReservationsViewController alloc] init];
     [self.navigationController pushViewController:lookVC animated:YES];

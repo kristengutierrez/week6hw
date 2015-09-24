@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "Hotel.h"
 #import "HotelListViewController.h"
+#import "BookReservationViewController.h"
 
 @interface RoomsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
@@ -62,11 +63,15 @@
   if (cell == nil) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomCell"];
   }
-  
-  Room *room = self.roomsArray[indexPath.row];
+//  NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES selector:@selector(localizedStandardCompare:)];
+   NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES];
+  NSArray *sortedRoomsArray = [self.roomsArray sortedArrayUsingDescriptors:@[descriptor]];
+  NSLog(@"%@", sortedRoomsArray);
+  Room *room = sortedRoomsArray[indexPath.row];
   cell.textLabel.text = [NSString stringWithFormat:@"Room %@", [room number]];
+  cell.textLabel.textColor = [UIColor whiteColor];
   cell.backgroundColor =  [UIColor colorWithRed:122.0/255.0 green:97.0/255.0 blue:149.0/255.0 alpha:1];
-  
+  cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
   return cell;
 }
 
@@ -74,5 +79,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return 100;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  [tableView deselectRowAtIndexPath:indexPath animated:true];
+  BookReservationViewController *bookVC = [[BookReservationViewController alloc] init];
+  [self.navigationController pushViewController:bookVC animated:YES];
+}
+
 
 @end

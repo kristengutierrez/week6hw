@@ -71,6 +71,10 @@
   Hotel *hotel = self.hotels[indexPath.row];
   NSLog(@"%@", hotel.name);
   cell.textLabel.text = hotel.name;
+    cell.backgroundColor =  [UIColor colorWithRed:122.0/255.0 green:97.0/255.0 blue:149.0/255.0 alpha:1];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:20.0];
+    cell.textLabel.textColor = [UIColor whiteColor];
+  
 //  cell.backgroundColor =  [UIColor colorWithRed:122.0/255.0 green:97.0/255.0 blue:149.0/255.0 alpha:1];
 //  if (cell == nil) {
 //    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HotelCell"];
@@ -84,6 +88,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  [tableView deselectRowAtIndexPath:indexPath animated:true];
   RoomsViewController *roomsVC = [[RoomsViewController alloc] init];
   roomsVC.currentHotel = self.hotels[indexPath.row];
   [self.navigationController pushViewController:roomsVC animated:YES];
